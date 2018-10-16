@@ -5,7 +5,7 @@ ENV GOLANG_VERSION 1.11.1
 RUN yum update -y && \
   yum groupinstall -y 'Development Tools' && \
   yum install -y rpm-build make yum-utils gcc binutils util-linux-ng which && \
-  yum install -y openssl-devel libuuid-devel
+  yum install -y openssl-devel libuuid-devel sudo
 
 # install golang
 RUN curl -O https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz
