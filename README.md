@@ -1,3 +1,3 @@
-# dockerfiles
+# Dockerfiles
 
-multiple dockerfiles for circleci test suite
+multiple dockerfiles for CircleCI test suite
