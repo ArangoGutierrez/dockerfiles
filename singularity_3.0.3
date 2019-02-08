@@ -1,0 +1,24 @@
+FROM golang:1.11-alpine3.8
+MAINTAINER Eduardo Arango <eduardo@sylabs.io>
+
+WORKDIR /go/src/github.com/sylabs/singularity 
+
+RUN git clone https://github.com/sylabs/singularity.git . \
+	&& git checkout v3.0.3;
+
+RUN apt-get update; \
+	apt-get install -y \
+		build-essential \
+		libssl-dev \
+		uuid-dev \
+		libgpgme11-dev \
+		squashfs-tools \
+		libseccomp-dev \
+		pkg-config \
+		yum; \
+	\
+	printf "%%_var /var\n%%_dbpath %%{_var}/lib/rpm\n" > "/root/.rpmmacros"; \
+	\
+	./mconfig \
+		&& make -C builddir/ \
+		&& make -C builddir/ install;
